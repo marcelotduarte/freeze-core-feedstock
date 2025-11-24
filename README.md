@@ -9,6 +9,10 @@ Package license: MIT
 
 Summary: Core dependency for cx_Freeze.
 
+Development: https://github.com/marcelotduarte/freeze-core
+
+Documentation: https://cx-freeze.readthedocs.io/
+
 Current build status
 ====================
 
