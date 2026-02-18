@@ -3,6 +3,7 @@ schema_version: 1
 context:
   name: freeze-core
   version: "0.6.0"
+  sha256: 46008c27e0e44bd97e283f2fb21df5190c555ff8dd2b008e6205f03f87f8c2c4
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +11,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|replace("-", "_") }}-${{ version }}.tar.gz
-  sha256: 46008c27e0e44bd97e283f2fb21df5190c555ff8dd2b008e6205f03f87f8c2c4
+  sha256: ${{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   dynamic_linking:
     missing_dso_allowlist:
@@ -32,13 +33,13 @@ requirements:
   host:
     - python
     - pip
-    - setuptools >=78.1.1,<81
-    - if: win and match(python, "<3.14t")
+    - setuptools >=78.1.1,<=82
+    - if: win
       then:
         - cx_logging >=3.2
   run:
     - python
-    - filelock >=3.20.1
+    - filelock >=3.20.3
     - if: win
       then:
         - cabarchive >=0.2.4
